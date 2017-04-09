@@ -17,7 +17,8 @@ build:
 
 requirements:
   build:
-    - toolchain
+    - {{ compiler('c') }}
+  host:
     - python
     - pip
   run:
@@ -41,3 +42,4 @@ extra:
     - ericmjl
     - jakirkham
     - ocefpaf
+    - mingwandroid
