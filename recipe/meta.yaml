@@ -35,6 +35,7 @@ about:
   home: https://coverage.readthedocs.io
   license: Apache 2.0
   license_file: LICENSE.txt
+  license_family: Apache
   summary: 'Code coverage measurement for Python'
   
   description: |
