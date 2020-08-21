@@ -1,5 +1,5 @@
-{% set version = "5.0.2" %}
-{% set hash = "b251c7092cbb6d789d62dc9c9e7c4fb448c9138b51285c36aeb72462cad3600e" %}
+{% set version = "5.0.3" %}
+{% set hash = "77afca04240c40450c331fa796b3eab6f1e15c5ecf8bf2b8bee9706cd5452fef" %}
 {% set pkgname = "coverage" %}
 
 package:
