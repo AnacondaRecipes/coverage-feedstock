@@ -9,7 +9,7 @@ source:
   sha256: 280baa8ec489c4f542f8940f9c4c2181f0306a8ee1a54eceba071a449fb870a0
 
 build:
-  number: 1
+  number: 2
   entry_points:
     - coverage = coverage.cmdline:main
 
@@ -34,6 +34,16 @@ about:
   license: Apache 2.0
   license_file: LICENSE.txt
   summary: Code coverage measurement for Python
+  description: |
+    Coverage.py is a tool for measuring code coverage of Python programs. It
+    monitors your program, noting which parts of the code have been executed,
+    then analyzes the source to identify code that could have been executed
+    but was not. Coverage measurement is typically used to gauge the
+    effectiveness of tests. It can show which parts of your code are being
+    exercised by tests, and which are not.
+  doc_url: http://coverage.readthedocs.org
+  dev_url: https://bitbucket.org/ned/coveragepy
+  doc_source_url: https://bitbucket.org/ned/coveragepy/src/default/doc/?at=default
 
 extra:
   recipe-maintainers:
