@@ -1,4 +1,4 @@
-{% set version = "6.1.1" %}
+{% set version = "6.2" %}
 
 package:
   name: coverage
@@ -6,10 +6,10 @@ package:
 
 source:
   url: https://pypi.io/packages/source/c/coverage/coverage-{{ version }}.tar.gz
-  sha256: b8e4f15b672c9156c1154249a9c5746e86ac9ae9edc3799ee3afebc323d9d9e0
+  sha256: e2cad8093172b7d1595b4ad66f24270808658e11acf43a8f95b41276162eb5b8
 
 build:
-  number: 2
+  number: 0
   entry_points:
     - coverage = coverage.cmdline:main
 
@@ -19,6 +19,8 @@ requirements:
   host:
     - python
     - pip
+    - setuptools
+    - wheel
   run:
     - python
 
@@ -33,7 +35,8 @@ test:
 
 about:
   home: https://coverage.readthedocs.io
-  license: Apache 2.0
+  license: Apache-2.0
+  license_family: Apache
   license_file: LICENSE.txt
   summary: Code coverage measurement for Python
   description: |
@@ -44,11 +47,8 @@ about:
     effectiveness of tests. It can show which parts of your code are being
     exercised by tests, and which are not.
   doc_url: http://coverage.readthedocs.org
-  # the old dev_url is deprecated dev_url: https://bitbucket.org/ned/coveragepy
-  # the new dev_url was taken from read the docs
   dev_url: https://github.com/nedbat/coveragepy
-  # the doc_source_url: seems to be deprecated
-  doc_source_url: https://bitbucket.org/ned/coveragepy/src/default/doc/?at=default
+  doc_source_url: https://github.com/nedbat/coveragepy/blob/master/doc/index.rst
 
 extra:
   recipe-maintainers:
