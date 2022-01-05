@@ -12,6 +12,7 @@ build:
   number: 0
   entry_points:
     - coverage = coverage.cmdline:main
+   skip: True  # [py<36]
 
 requirements:
   build:
