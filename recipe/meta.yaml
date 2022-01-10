@@ -47,7 +47,7 @@ about:
     but was not. Coverage measurement is typically used to gauge the
     effectiveness of tests. It can show which parts of your code are being
     exercised by tests, and which are not.
-  doc_url: http://coverage.readthedocs.org
+  doc_url: https://coverage.readthedocs.org
   dev_url: https://github.com/nedbat/coveragepy
   doc_source_url: https://github.com/nedbat/coveragepy/blob/master/doc/index.rst
 
