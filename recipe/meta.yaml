@@ -49,7 +49,7 @@ about:
     exercised by tests, and which are not.
   doc_url: https://coverage.readthedocs.org
   dev_url: https://github.com/nedbat/coveragepy
-  doc_source_url: https://github.com/nedbat/coveragepy/blob/master/doc/index.rst
+  doc_source_url: https://github.com/nedbat/coveragepy/tree/6.2/doc
 
 extra:
   recipe-maintainers:
