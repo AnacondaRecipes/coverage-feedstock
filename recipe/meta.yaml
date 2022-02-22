@@ -1,18 +1,19 @@
-{% set version = "6.2" %}
+{% set name = "coverage" %}
+{% set version = "6.3.1" %}
 
 package:
-  name: coverage
+  name: {{ name|lower }}
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/c/coverage/coverage-{{ version }}.tar.gz
-  sha256: e2cad8093172b7d1595b4ad66f24270808658e11acf43a8f95b41276162eb5b8
+  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/coverage-{{ version }}.tar.gz
+  sha256: 6c3f6158b02ac403868eea390930ae64e9a9a2a5bbfafefbb920d29258d9f2f8
 
 build:
   number: 0
+  skip: True  # [py<37]
   entry_points:
     - coverage = coverage.cmdline:main
-   skip: True  # [py<36]
 
 requirements:
   build:
@@ -24,6 +25,8 @@ requirements:
     - wheel
   run:
     - python
+    # Optional dependency: enable pyproject.toml support
+    - tomli
 
 test:
   imports:
@@ -31,8 +34,8 @@ test:
   requires:
     - pip
   commands:
-    - coverage --help
     - pip check
+    - coverage --help
 
 about:
   home: https://coverage.readthedocs.io
