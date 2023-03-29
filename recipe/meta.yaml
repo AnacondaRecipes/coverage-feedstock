@@ -11,7 +11,6 @@ source:
 
 build:
   number: 0
-  # trigger 1
   skip: True  # [py<37]
   entry_points:
     - coverage = coverage.cmdline:main
@@ -26,6 +25,8 @@ requirements:
     - wheel
   run:
     - python
+    # extra dependency to enable pyproject.toml support
+    - tomli  # [py<311]
 
 test:
   imports:
@@ -51,7 +52,6 @@ about:
     exercised by tests, and which are not.
   doc_url: https://coverage.readthedocs.org
   dev_url: https://github.com/nedbat/coveragepy
-  doc_source_url: https://github.com/nedbat/coveragepy/tree/6.2/doc
 
 extra:
   recipe-maintainers:
