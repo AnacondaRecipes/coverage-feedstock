@@ -1,5 +1,5 @@
 {% set name = "coverage" %}
-{% set version = "6.3.2" %}
+{% set version = "7.2.2" %}
 
 package:
   name: {{ name|lower }}
@@ -7,11 +7,10 @@ package:
 
 source:
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/coverage-{{ version }}.tar.gz
-  sha256: 03e2a7826086b91ef345ff18742ee9fc47a6839ccd517061ef8fa1976e652ce9
+  sha256: 36dd42da34fe94ed98c39887b86db9d06777b1c8f860520e21126a75507024f2
 
 build:
   number: 0
-  # trigger 1
   skip: True  # [py<37]
   entry_points:
     - coverage = coverage.cmdline:main
@@ -26,6 +25,8 @@ requirements:
     - wheel
   run:
     - python
+    # extra dependency to enable pyproject.toml support
+    - tomli  # [py<311]
 
 test:
   imports:
@@ -49,9 +50,8 @@ about:
     but was not. Coverage measurement is typically used to gauge the
     effectiveness of tests. It can show which parts of your code are being
     exercised by tests, and which are not.
-  doc_url: https://coverage.readthedocs.org
+  doc_url: https://coverage.readthedocs.io/
   dev_url: https://github.com/nedbat/coveragepy
-  doc_source_url: https://github.com/nedbat/coveragepy/tree/6.2/doc
 
 extra:
   recipe-maintainers:
