@@ -1,5 +1,5 @@
 {% set name = "coverage" %}
-{% set version = "7.6.1" %}
+{% set version = "7.6.9" %}
 
 package:
   name: {{ name|lower }}
@@ -7,11 +7,11 @@ package:
 
 source:
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  sha256: 953510dfb7b12ab69d20135a0662397f077c59b1e6379a768e97c59d852ee51d
+  sha256: 4a8d8977b0c6ef5aeadcb644da9e69ae0dcfe66ec7f368c89c72e058bd71164d
 
 build:
   number: 0
-  skip: True  # [py<38]
+  skip: True  # [py<39]
   entry_points:
     - coverage = coverage.cmdline:main
 
