@@ -1,17 +1,17 @@
 {% set name = "coverage" %}
-{% set version = "7.6.9" %}
+{% set version = "7.11.0" %}
 
 package:
   name: {{ name|lower }}
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  sha256: 4a8d8977b0c6ef5aeadcb644da9e69ae0dcfe66ec7f368c89c72e058bd71164d
+  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
+  sha256: 167bd504ac1ca2af7ff3b81d245dfea0292c5032ebef9d66cc08a7d28c1b8050
 
 build:
   number: 0
-  skip: True  # [py<39]
+  skip: true  # [py<39]
   entry_points:
     - coverage = coverage.cmdline:main
 
@@ -22,7 +22,6 @@ requirements:
     - python
     - pip
     - setuptools
-    - wheel
   run:
     - python
     # extra dependency to enable pyproject.toml support
