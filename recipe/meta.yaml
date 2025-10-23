@@ -1,41 +1,92 @@
 {% set name = "coverage" %}
-{% set version = "7.6.9" %}
+{% set version = "7.11.0" %}
 
 package:
   name: {{ name|lower }}
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  sha256: 4a8d8977b0c6ef5aeadcb644da9e69ae0dcfe66ec7f368c89c72e058bd71164d
+  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
+  sha256: 167bd504ac1ca2af7ff3b81d245dfea0292c5032ebef9d66cc08a7d28c1b8050
 
 build:
   number: 0
-  skip: True  # [py<39]
+  skip: True  # [py<310]
   entry_points:
     - coverage = coverage.cmdline:main
 
 requirements:
   build:
+    - {{ stdlib('c') }}
     - {{ compiler('c') }}
   host:
-    - python
     - pip
-    - setuptools
+    - python
     - wheel
+    - setuptools
   run:
     - python
     # extra dependency to enable pyproject.toml support
     - tomli  # [py<311]
 
+# E   where is_dir = (PosixPath('$SRC_DIR') / 'ci').is_dir
+# ./ci/coverage/lab/tests is not in the pypi release tarball
+{% set deselect_tests = " --deselect=tests/test_regions.py::test_real_code_regions" %}
+{% set deselect_tests = deselect_tests + " --deselect=tests/test_testing.py::test_all_our_source_files" %}
+
 test:
+  source_files:
+    - tests
   imports:
     - coverage
-  requires:
-    - pip
+    - coverage.annotate
+    - coverage.bytecode
+    - coverage.cmdline
+    - coverage.collector
+    - coverage.config
+    - coverage.context
+    - coverage.control
+    - coverage.core
+    - coverage.data
+    - coverage.debug
+    - coverage.disposition
+    - coverage.exceptions
+    - coverage.execfile
+    - coverage.files
+    - coverage.html
+    - coverage.inorout
+    - coverage.jsonreport
+    - coverage.lcovreport
+    - coverage.misc
+    - coverage.multiproc
+    - coverage.numbits
+    - coverage.parser
+    - coverage.patch
+    - coverage.phystokens
+    - coverage.plugin
+    - coverage.plugin_support
+    - coverage.python
+    - coverage.pytracer
+    - coverage.regions
+    - coverage.report
+    - coverage.report_core
+    - coverage.results
+    - coverage.sqldata
+    - coverage.sqlitedb
+    - coverage.sysmon
+    - coverage.templite
+    - coverage.tomlconfig
+    - coverage.types
+    - coverage.version
+    - coverage.xmlreport
   commands:
     - pip check
     - coverage --help
+    - pytest -v tests {{ deselect_tests }}
+  requires:
+    - pip
+    - pytest
+    - hypothesis
 
 about:
   home: https://coverage.readthedocs.io
@@ -50,7 +101,7 @@ about:
     but was not. Coverage measurement is typically used to gauge the
     effectiveness of tests. It can show which parts of your code are being
     exercised by tests, and which are not.
-  doc_url: https://coverage.readthedocs.io/
+  doc_url: https://coverage.readthedocs.io
   dev_url: https://github.com/nedbat/coveragepy
 
 extra:
