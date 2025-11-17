@@ -1,4 +1,5 @@
 %PYTHON% -m pip install . --no-deps --no-build-isolation --ignore-installed --no-cache-dir -vv
+if %ERRORLEVEL% neq 0 exit %ERRORLEVEL%
 
 :: Remove versioned entrypoints.
 %PYTHON% -c "import os; print('_'.join(os.environ['PY_VER'].split('.')[0]))" > temp.txt

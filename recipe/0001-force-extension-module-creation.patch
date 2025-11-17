@@ -1,0 +1,35 @@
+From f1184a63e0dae1340defbd1d44543f822017ca8b Mon Sep 17 00:00:00 2001
+From: Brian Wing <bwing@anaconda.com>
+Date: Mon, 17 Nov 2025 12:09:28 -0500
+Subject: [PATCH] Force extension module creation
+
+---
+ setup.py | 13 ++-----------
+ 1 file changed, 2 insertions(+), 11 deletions(-)
+
+diff --git a/setup.py b/setup.py
+index 36d6f606b..6d7a42b17 100644
+--- a/setup.py
++++ b/setup.py
+@@ -207,17 +207,8 @@ if compile_extension:
+ 
+ def main():
+     """Actually invoke setup() with the arguments we built above."""
+-    # For a variety of reasons, it might not be possible to install the C
+-    # extension.  Try it with, and if it fails, try it without.
+-    try:
+-        setup(**setup_args)
+-    except BuildFailed as exc:
+-        msg = "Couldn't install with extension module, trying without it..."
+-        exc_msg = f"{exc.__class__.__name__}: {exc.cause}"
+-        print(f"**\n** {msg}\n** {exc_msg}\n**")
+-
+-        del setup_args["ext_modules"]
+-        setup(**setup_args)
++    # Force the creation of the extension module.
++    setup(**setup_args)
+ 
+ 
+ if __name__ == "__main__":
+-- 
+2.51.1
