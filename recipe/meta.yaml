@@ -1,5 +1,7 @@
 {% set name = "coverage" %}
-{% set version = "7.11.0" %}
+{% set version = "7.13.4" %}
+{% set deselect_tests = " --deselect=tests/test_regions.py::test_real_code_regions" %}
+{% set deselect_tests = 'deselect_tests + " --deselect=tests/test_testing.py::test_all_our_source_files"' %}
 
 package:
   name: {{ name|lower }}
@@ -7,13 +9,13 @@ package:
 
 source:
   url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  sha256: 167bd504ac1ca2af7ff3b81d245dfea0292c5032ebef9d66cc08a7d28c1b8050
+  sha256: e5c8f6ed1e61a8b2dcdf31eb0b9bbf0130750ca79c1c49eb898e2ad86f5ccc91
   patches:
     - 0001-force-extension-module-creation.patch
 
 build:
-  number: 1
-  skip: True  # [py<310]
+  number: 0
+  skip: true  # [py<310]
   entry_points:
     - coverage = coverage.cmdline:main
 
@@ -24,7 +26,6 @@ requirements:
   host:
     - pip
     - python
-    - wheel
     - setuptools
   run:
     - python
@@ -33,9 +34,6 @@ requirements:
 
 # E   where is_dir = (PosixPath('$SRC_DIR') / 'ci').is_dir
 # ./ci/coverage/lab/tests is not in the pypi release tarball
-{% set deselect_tests = " --deselect=tests/test_regions.py::test_real_code_regions" %}
-{% set deselect_tests = deselect_tests + " --deselect=tests/test_testing.py::test_all_our_source_files" %}
-
 test:
   source_files:
     - tests
