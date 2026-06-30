@@ -1,13 +1,17 @@
 {% set name = "coverage" %}
-{% set version = "7.13.4" %}
+{% set version = "7.14.1" %}
+{% set deselect_tests = " --deselect=tests/test_regions.py::test_real_code_regions" %}
+{% set deselect_tests = 'deselect_tests + " --deselect=tests/test_testing.py::test_all_our_source_files"' %}
 
+# E   where is_dir = (PosixPath('$SRC_DIR') / 'ci').is_dir
+# ./ci/coverage/lab/tests is not in the pypi release tarball
 package:
   name: {{ name|lower }}
   version: {{ version }}
 
 source:
   url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  sha256: e5c8f6ed1e61a8b2dcdf31eb0b9bbf0130750ca79c1c49eb898e2ad86f5ccc91
+  sha256: 30c08f7d90415aa98b3c990385dea2939b0da55f38515e5b369b83655f8523be
   patches:
     - 0001-force-extension-module-creation.patch
 
@@ -24,17 +28,11 @@ requirements:
   host:
     - pip
     - python
-    - wheel
     - setuptools
   run:
     - python
     # extra dependency to enable pyproject.toml support
     - tomli  # [py<311]
-
-# E   where is_dir = (PosixPath('$SRC_DIR') / 'ci').is_dir
-# ./ci/coverage/lab/tests is not in the pypi release tarball
-{% set deselect_tests = " --deselect=tests/test_regions.py::test_real_code_regions" %}
-{% set deselect_tests = deselect_tests + " --deselect=tests/test_testing.py::test_all_our_source_files" %}
 
 test:
   source_files:
