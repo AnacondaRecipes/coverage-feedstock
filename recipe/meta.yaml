@@ -1,10 +1,6 @@
 {% set name = "coverage" %}
 {% set version = "7.14.1" %}
-{% set deselect_tests = " --deselect=tests/test_regions.py::test_real_code_regions" %}
-{% set deselect_tests = 'deselect_tests + " --deselect=tests/test_testing.py::test_all_our_source_files"' %}
 
-# E   where is_dir = (PosixPath('$SRC_DIR') / 'ci').is_dir
-# ./ci/coverage/lab/tests is not in the pypi release tarball
 package:
   name: {{ name|lower }}
   version: {{ version }}
@@ -29,11 +25,16 @@ requirements:
     - pip
     - python
     - setuptools
+    - wheel
   run:
     - python
     # extra dependency to enable pyproject.toml support
     - tomli  # [py<311]
 
+# E   where is_dir = (PosixPath('$SRC_DIR') / 'ci').is_dir
+# ./ci/coverage/lab/tests is not in the pypi release tarball
+{% set deselect_tests = " --deselect=tests/test_regions.py::test_real_code_regions" %}
+{% set deselect_tests = deselect_tests + " --deselect=tests/test_testing.py::test_all_our_source_files" %}
 test:
   source_files:
     - tests
