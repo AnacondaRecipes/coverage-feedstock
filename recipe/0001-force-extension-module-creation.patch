@@ -1,4 +1,4 @@
-From f1184a63e0dae1340defbd1d44543f822017ca8b Mon Sep 17 00:00:00 2001
+From 8f8a3e6a1c2b3d4e5f60718293a4b5c6d7e8f901 Mon Sep 17 00:00:00 2001
 From: Brian Wing <bwing@anaconda.com>
 Date: Mon, 17 Nov 2025 12:09:28 -0500
 Subject: [PATCH] Force extension module creation
@@ -8,12 +8,12 @@ Subject: [PATCH] Force extension module creation
  1 file changed, 2 insertions(+), 11 deletions(-)
 
 diff --git a/setup.py b/setup.py
-index 36d6f606b..6d7a42b17 100644
+index 20a11ed..57d3b2d 100644
 --- a/setup.py
 +++ b/setup.py
-@@ -207,17 +207,8 @@ if compile_extension:
+@@ -247,17 +247,8 @@ if compile_extension:
  
- def main():
+ def main() -> None:
      """Actually invoke setup() with the arguments we built above."""
 -    # For a variety of reasons, it might not be possible to install the C
 -    # extension.  Try it with, and if it fails, try it without.
